@@ -1,0 +1,18 @@
+# OS Files
+.DS_STORE
+Icon?
+.*
+!/.gitignore
+
+# Directories
+/download_misc
+/download_tools
+/professional_frog
+/professional_km-d
+/professional_kms
+
+# not ready for prime-time
+/_testing_ground
+/libraries
+/project_3d
+/project_folio
