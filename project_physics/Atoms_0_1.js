@@ -120,7 +120,7 @@ var dialogComponents = {
 
 	atomSize: {
 		type: 'number',
-		label: 'Number of atoms',
+		label: 'Size of atoms',
 		steppers: true,
 		units: 'point'
 	},

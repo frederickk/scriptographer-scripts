@@ -9,14 +9,14 @@
  *
  *	this script uses stuff borrowed from keegan's "rando-color.js"
  *	as well as from some other things i had written in processing
- *	
+ *
  *	0.8.2
  *	- updated to scriptographer 2.5 api let me know via email if there are any bugs
- *	
+ *
  *	0.9.2
  *	- an update of 0.8.2 that works with scriptographer version 2.7.037
  *	- adds feature to detect colormode, sliders will be CMYK or RGB respectively (not perfect, but functional)
- *	
+ *
  *	0.9.3
  *	- updated interface to scriptographer 2.9.070 api
  *	- added ability to customize range of random colors
@@ -47,8 +47,8 @@ var palette;
 
 // values
 var values = {
-	colorModeBounds:	100,  //default assumes activeDocument is cmyk 
-	
+	colorModeBounds:	100,  //default assumes activeDocument is cmyk
+
 	// ------------------------------------
 	// delete
 	// ------------------------------------
@@ -98,7 +98,7 @@ var components = {
 	// ------------------------------------
 	// delete
 	// ------------------------------------
-	b_delete: { 
+	b_delete: {
 		type: 'checkbox',
 		label: 'Delete',
 		onChange: function(value) {
@@ -106,7 +106,7 @@ var components = {
 		}
 	},
 
-	val_deleteDisp: { 
+	val_deleteDisp: {
 		type: 'text',
 		label: 'Percentage of\nSelected Items',
 		units: 'percent',
@@ -116,17 +116,17 @@ var components = {
 		value: values.val_deleteAmt
 	},
 
-	val_deleteAmt: { 
+	val_deleteAmt: {
 		type: 'slider',
 		fullSize: true,
 		range: [2, 100],
 		enabled: false,
-		onChange: function(value) { 
+		onChange: function(value) {
             components.val_deleteDisp.value = value;
         }
 	},
 
-	deleteRule: { 
+	deleteRule: {
 		type: 'ruler',
 		fullSize: true,
 	},
@@ -135,7 +135,7 @@ var components = {
 	// ------------------------------------
 	// stroke
 	// ------------------------------------
-	b_stroke: { 
+	b_stroke: {
 		type: 'checkbox',
 		label: 'Stroke',
 		onChange: function(value) {
@@ -166,7 +166,7 @@ var components = {
 		enabled: false
 	},
 
-	strokeRule: { 
+	strokeRule: {
 		type: 'ruler',
 		fullSize: true,
 	},
@@ -184,7 +184,7 @@ var components = {
 		}
 	},
 
-	b_color: { 
+	b_color: {
 		type: 'checkbox',
 		label: 'Color',
 		onChange: function(value) {
@@ -202,9 +202,9 @@ var components = {
 			components.val_color_k_max.enabled = value;
 		}
 	},
-	
+
 	//fill
-	b_colorFills: { 
+	b_colorFills: {
 		type: 'checkbox',
 		label: 'Fills',
 		enabled: false,
@@ -213,7 +213,7 @@ var components = {
 	},
 
 	//stroke
-	b_colorStroke: { 
+	b_colorStroke: {
 		type: 'checkbox',
 		label: 'Strokes',
 		enabled: false,
@@ -222,7 +222,7 @@ var components = {
 	},
 
 	//stroke
-	b_colorSwatches: { 
+	b_colorSwatches: {
 		type: 'checkbox',
 		label: 'Document\nSwatches',
 		enabled: false,
@@ -232,7 +232,7 @@ var components = {
 
 	//color sliders
 	//color c
-	val_color_c_min: { 
+	val_color_c_min: {
 		type: 'slider',
 		//label: 'Min. C',
 		fullSize: true,
@@ -242,7 +242,7 @@ var components = {
 		enabled: false
 	},
 
-	val_color_c_max: { 
+	val_color_c_max: {
 		type: 'slider',
 		//label: 'Max. C',
 		fullSize: true,
@@ -254,7 +254,7 @@ var components = {
 
 
 	//color m
-	val_color_m_min: { 
+	val_color_m_min: {
 		type: 'slider',
 		//label: 'Min. M',
 		fullSize: true,
@@ -264,7 +264,7 @@ var components = {
 		enabled: false
 	},
 
-	val_color_m_max: { 
+	val_color_m_max: {
 		type: 'slider',
 		//label: 'Max. M',
 		fullSize: true,
@@ -275,7 +275,7 @@ var components = {
 	},
 
 	//color y
-	val_color_y_min: { 
+	val_color_y_min: {
 		type: 'slider',
 		//label: 'Min. Y',
 		fullSize: true,
@@ -285,7 +285,7 @@ var components = {
 		enabled: false
 	},
 
-	val_color_y_max: { 
+	val_color_y_max: {
 		type: 'slider',
 		//label: 'Max. Y',
 		fullSize: true,
@@ -296,7 +296,7 @@ var components = {
 	},
 
 	//color k
-	val_color_k_min: { 
+	val_color_k_min: {
 		type: 'slider',
 		//label: 'Min. K',
 		fullSize: true,
@@ -306,7 +306,7 @@ var components = {
 		enabled: false
 	},
 
-	val_color_k_max: { 
+	val_color_k_max: {
 		type: 'slider',
 		//label: 'Max. K',
 		fullSize: true,
@@ -316,7 +316,7 @@ var components = {
 		enabled: false
 	},
 
-	colorRule: { 
+	colorRule: {
 		type: 'ruler',
 		fullSize: true,
 	},
@@ -325,7 +325,7 @@ var components = {
 	// ------------------------------------
 	// transparency
 	// ------------------------------------
-	b_trans: { 
+	b_trans: {
 		type: 'checkbox',
 		label: 'Transparency',
 		onChange: function(value) {
@@ -352,7 +352,7 @@ var components = {
 		enabled: false
 	},
 
-	transRule: { 
+	transRule: {
 		type: 'ruler',
 		fullSize: true,
 	},
@@ -361,12 +361,12 @@ var components = {
 	// ------------------------------------
 	// transparency
 	// ------------------------------------
-	b_stack: { 
+	b_stack: {
 		type: 'checkbox',
 		label: 'Stack',
 	},
 
-	stackRule: { 
+	stackRule: {
 		type: 'ruler',
 		fullSize: true,
 	},
@@ -375,8 +375,8 @@ var components = {
 	// ------------------------------------
 	// Invocation
 	// ------------------------------------
-	submit: { 
-		type: 'button', 
+	submit: {
+		type: 'button',
 		value: 'Apply',
 		fullSize: true,
 		onClick: function() {
@@ -435,7 +435,7 @@ function Draw() {
 	// components.val_deleteAmt.range = [0, sel.length-1];
 
 	// loop through selected items
-	for ( i in sel ) {
+	for ( var i=0; i<sel.length; i++ ) {
 		var object = sel[i];
 
 		if( object.isValid() ) {
@@ -463,7 +463,7 @@ function Draw() {
 			//print( values.b_color );
 			if( values.b_color ) {
 				var color;
-			
+
 				if( values.b_colorSwatches ) {
 					color = RandomSwatch( values.val_swatchStart, swatchList );
 				}
@@ -493,7 +493,7 @@ function Draw() {
 					//print(object.style.stroke.color);
 				}
 			}
-		
+
 
 			// ------------------------------------
 			// transparency
@@ -508,7 +508,7 @@ function Draw() {
 			// ------------------------------------
 			if ( values.b_stack ) {
 				var objStack = sel[ parseInt( random(0,sel.length) ) ];
-				objStack.moveAbove( object ); 
+				objStack.moveAbove( object );
 			}
 
 		} //end isValid()
@@ -541,7 +541,7 @@ function RandomSwatch(_swatchStart, _swatchList) {
  	print( index + '\tswatchSel.color:\t' + swatchSel.color );
  	*/
 
-	if (swatchSel != null && swatchSel.color != null) { 
+	if (swatchSel != null && swatchSel.color != null) {
 		//check if swatch is valid
 		swatchOut = swatchSel.color;
 	}

@@ -1,11 +1,12 @@
 /**
- *	Stroke <-> Fill 0.5.1
+ *	Stroke <-> Fill 0.5
  *
  *	Ken Frederick
  *	ken.frederick@gmx.de
  *
  *	http://kennethfrederick.de/
  *	http://blog.kennethfrederick.de/
+ *
  *
  */
 
@@ -16,36 +17,12 @@
 // document properties
 var sel;
 
-// values
-var values = {
-	bRandom: false
-};
-
-// gui components
-var components = {
-	bRandom: { 
-		type: 'checkbox',
-		label: 'random'
-	},
-
-	submit: { 
-		type: 'button', 
-		value: 'Apply',
-		onClick: function() {
-			Draw();
-		}
-	}
-};
-
 
 
 // ------------------------------------------------------------------------
 // Setup
 // ------------------------------------------------------------------------
 function Setup() {
-	// initialize the palette window
-	var palette = new Palette('Stroke <-> Fill 0.4.2', components, values);
-
 	sel = activeDocument.getItems({
 		type: Item,
 		selected: true
@@ -58,29 +35,19 @@ function Setup() {
 // Draw
 // ------------------------------------------------------------------------
 function Draw() {
-	var rand = 0;
-
 	for( var i=0; i<sel.length; i++ ) {
 		var obj = sel[i];
 		
-		rand = (values.bRandom) 
-			? parseInt( Math.random()*2 )
-			: 0;
-
 		//grouped
 		if( obj.hasChildren() ) {
 			for( var j=0; j<obj.children.length; j++ ) {
-				rand = (values.bRandom) 
-					? parseInt( Math.random()*2 )
-					: 0;
-				if (rand == 0) swapStrokeFill( obj.children[j] );
+				swapStrokeFill( obj.children[j] );
 			}
 		}
 		//singular
 		else {
-			if (rand == 0) swapStrokeFill( obj );
+			swapStrokeFill( obj );
 		}
-
 	}
 };
 
@@ -113,7 +80,6 @@ function swapStrokeFill(obj) {
 // Invocation
 // ------------------------------------------------------------------------
 Setup();
-// Update(event);
-// Draw();
+Draw();
 
 

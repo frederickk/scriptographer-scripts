@@ -13,7 +13,7 @@
 // ------------------------------------------------------------------------
 // libraries
 // ------------------------------------------------------------------------
-include('libraries/frederickkScript/frederickkScript.js');
+include('libraries/folio/scriptographer.folio.js');
 
 
 
@@ -23,10 +23,10 @@ include('libraries/frederickkScript/frederickkScript.js');
 
 /**
  *	Note from the Scriptographer.org Team
- *	
+ *
  *	In Scriptographer 2.9, we switched to a top-down coordinate system and
  *	degrees for angle units as an easier alternative to radians.
- *	
+ *
  *	For backward compatibility we offer the possibility to still use the old
  *	bottom-up coordinate system and radians for angle units, by setting the two
  *	values bellow. Read more about this transition on our website:
@@ -38,8 +38,8 @@ script.coordinateSystem = 'top-down';
 script.angleUnits = 'radians';
 
 
-// load frederickkScript
-var f = frederickkScript;
+// load folio
+var f = folio;
 
 var fio = f.FIO;
 
@@ -62,7 +62,7 @@ var piToPt = 12;
 
 
 // values
-var settingsFile = '.createGrid_0_0.cpValues'; // this is a hidden file
+var settingsFile = '.createGrid.cpValues'; // this is a hidden file
 var values = {
 	// default unit of measure
 	unit:			'millimeter',
@@ -138,12 +138,12 @@ var components = {
 			updatePalette(values.unit, values.valDef);
 		}
 	},
-	
-	
+
+
 	// ------------------------------------
 	// margins
 	// ------------------------------------
-	sizeRule: { 
+	sizeRule: {
 		type: 			'ruler',
 		label: 			'Size',
 		fullSize: 		true,
@@ -174,12 +174,12 @@ var components = {
 			components.sizeHeight.enabled = !value;
 		}
 	},
-	
+
 
 	// ------------------------------------
 	// margins
 	// ------------------------------------
-	marginRule: { 
+	marginRule: {
 		type: 			'ruler',
 		label: 			'Margins',
 		fullSize: 		true,
@@ -213,16 +213,16 @@ var components = {
 		steppers:		true,
 		fractionDigits:	2,
 	},
-	
+
 	// ------------------------------------
 	// rows
 	// ------------------------------------
-	rowRule: { 
+	rowRule: {
 		type: 			'ruler',
 		label: 			'Rows',
 		fullSize: 		true,
 	},
-	
+
 	rows: {
 		type:			'number',
 		label:			'Number',
@@ -235,17 +235,17 @@ var components = {
 		units:			values.unit,
 		fractionDigits:	2,
 	},
-	
-	
+
+
 	// ------------------------------------
 	// cols
 	// ------------------------------------
-	colRule: { 
+	colRule: {
 		type: 			'ruler',
 		label: 			'Columns',
 		fullSize: 		true,
 	},
-	
+
 	cols: {
 		type:			'number',
 		label:			'Number',
@@ -257,13 +257,13 @@ var components = {
 		label:			'Gutter',
 		units:			values.unit,
 		fractionDigits:	2,
-	},	
-	
-	
+	},
+
+
 	// ------------------------------------
 	// options
 	// ------------------------------------
-	optionsRule: { 
+	optionsRule: {
 		type: 			'ruler',
 		label: 			'Options',
 		fullSize: 		true,
@@ -283,13 +283,13 @@ var components = {
 	// ------------------------------------
 	// Invocation
 	// ------------------------------------
-	applyRule: { 
+	applyRule: {
 		type: 			'ruler',
 		fullSize: 		true,
 	},
 
-	submit: { 
-		type: 'button', 
+	submit: {
+		type: 'button',
 		value: 'Generate',
 		fullSize: true,
 		onClick: function() {
@@ -308,7 +308,7 @@ var components = {
 function Setup() {
 	loadSettings();
 
-	/**
+	/*
 	 *	main palette
 	 */
 	palette = new Palette('Create Grid', components, values);
@@ -332,7 +332,7 @@ function Update(event) {
 function Draw() {
 	// create grid layer
 	var layer;
-	for(i in activeDocument.layers) {
+	for(var i=0; i<activeDocument.layers.length; i++) {
 		var l = activeDocument.layers[i];
 		l.locked = false;
 
@@ -350,7 +350,7 @@ function Draw() {
 			}
 			//break;
 		}
-		
+
 	}
 	if(layer == null) {
 		layer = new Layer();
@@ -365,8 +365,8 @@ function Draw() {
 
 	if(values.bAllArtboards) {
 		// across all artboards
-		for(i in activeDocument.artboards) {
-			//print('all artboards', i);
+		for(var i=0; i<activeDocument.artboards.length; i++) {
+			// print('all artboards', i);
 			theArtboard = activeDocument.artboards[i];
 			group.appendTop( createMargins(theArtboard) );
 			group.appendTop( createRowsCols(theArtboard) );
@@ -406,7 +406,7 @@ function createMargins(theArtboard) {
 		bh = values.sizeHeight;
 	}
 	var bx = bounds.x - artboard.bounds.x;
-	var by = bounds.y - artboard.bounds.y; 
+	var by = bounds.y - artboard.bounds.y;
 
 
 	// ------------------------------------
@@ -416,19 +416,19 @@ function createMargins(theArtboard) {
 	groupMargins = new Group();
 
 
-	/**
+	/*
 	 * top & bottom margins
 	 */
 	var mTop	= new Path.Line( new Point(bx, by+(bh-values.marginTop)), new Point(bx+bw, by+(bh-values.marginTop)) );
 	mTop.guide = true;
 	groupMargins.appendTop(mTop);
-	
+
 	var mBottom	= new Path.Line( new Point(bx, by+values.marginBottom), new Point(bx+bw, by+values.marginBottom) );
 	mBottom.guide = true;
 	groupMargins.appendTop(mBottom);
 
 
-	/**
+	/*
 	 * left & right margins
 	 */
 	var mLeft	= new Path.Line( new Point(bx+values.marginLeft, by), new Point(bx+values.marginLeft, by+bh) );
@@ -458,7 +458,7 @@ function createRowsCols(theArtboard) {
 		bh = values.sizeHeight;
 	}
 	var bx = bounds.x - active.bounds.x;
-	var by = bounds.y - active.bounds.y; 
+	var by = bounds.y - active.bounds.y;
 	var activeSpace = new Point( bw-(values.marginLeft+values.marginRight), bh-(values.marginTop+values.marginBottom) );
 
 
@@ -468,14 +468,14 @@ function createRowsCols(theArtboard) {
 	groupRowsCols = new Group();
 
 
-	/**
+	/*
 	 * cols
 	 */
 	if( values.cols > 0 ) {
 		var colGutterCombined = Math.abs( values.colGutter*(values.cols-1) );
 		activeSpace.x -= colGutterCombined;
 		activeSpace.x /= values.cols;
-	
+
 		var x = values.marginLeft;
 		for(var i=0; i<values.cols-1; i++) {
 			x += activeSpace.x;
@@ -488,17 +488,17 @@ function createRowsCols(theArtboard) {
 			gutterRight.guide = true;
 			groupRowsCols.appendTop(gutterRight);
 		}
-	}	
-	
+	}
 
-	/**
+
+	/*
 	 * rows
 	 */
 	if( values.rows > 0 ) {
 		var rowGutterCombined = Math.abs( values.rowGutter*(values.rows-1) );
 		activeSpace.y -= rowGutterCombined;
 		activeSpace.y /= values.rows;
-	
+
 		var y = values.marginTop;
 		for(var i=0; i<values.rows-1; i++) {
 			y += activeSpace.y;

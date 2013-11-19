@@ -54,7 +54,7 @@ include('../libraries/frederickkScript/frederickkScript.js');
  *	http://scriptographer.org/news/version-2.9.064-arrived/
  */
 
-script.coordinateSystem = 'bottom-up';
+script.coordinateSystem = 'top-down';
 script.angleUnits = 'radians';
 
 
@@ -119,7 +119,7 @@ var components = {
 	},
 	bLimit: { 
 		type: 'checkbox',
-		label: 'Limited Ammount'
+		label: 'Limited Amount'
 	},
 
 
