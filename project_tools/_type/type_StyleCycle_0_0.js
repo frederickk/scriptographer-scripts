@@ -50,7 +50,7 @@ function onMouseDown(event) {
 			var type = obj.characterStyle.font.family.name;
 			var style = obj.characterStyle.font.index;
 			var length = obj.characterStyle.font.family.length;
-			
+
 			style++;
 			if(style >= length) style = 0;
 
@@ -61,12 +61,12 @@ function onMouseDown(event) {
 
 
 	}
-}
+};
 
 
 function onMouseUp(event) {
 	activeDocument.redraw();
-}
+};
 
 
 
