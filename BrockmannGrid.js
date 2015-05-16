@@ -270,7 +270,7 @@ function Update(event) {
 		top:	values.marginTop,
 		bottom:	values.marginBottom
 	});
-	dialog.getComponent('rows').options = paper.divisor( Math.floor( (activeSize.height+values.typeLeading) / values.typeLeading) );
+	dialog.getComponent('rows').options = paper.divisor( Math.floor( (activeSize.height+values.leading) / values.leading) );
 	dialog.getComponent('cols').options = paper.divisor( activeSize.width );
 
 };
@@ -293,26 +293,26 @@ function Draw() {
 		values.marginLeft, values.marginTop,
 		grid.width, activeDocument.activeArtboard.bounds.height-values.marginTop-values.marginBottom
 	));
-	body.characterStyle.leading = values.typeLeading;
-	body.characterStyle.fontSize = (values.typeLeading >= 8)
-		? values.typeLeading-3
-		: values.typeLeading-1;
+	body.characterStyle.leading = values.leading;
+	body.characterStyle.fontSize = (values.leading >= 8)
+		? values.leading-3
+		: values.leading-1;
 	body.characterStyle.font = app.fonts['Helvetica'];
 	body.content = text;
 	// body.trimToFit();
 
 	// define head copy size
 	var head = body.clone();
-	head.translate( new Point(grid.width+values.typeLeading,0) );
+	head.translate( new Point(grid.width+values.leading,0) );
 	head.characterStyle.leading *= 1.5;
-	head.characterStyle.fontSize = (values.typeLeading*1.5)-3;
+	head.characterStyle.fontSize = (values.leading*1.5)-3;
 	// head.trimToFit();
 
 	// define display copy size
 	var disp = body.clone();
-	disp.translate( new Point((grid.width*2)+(values.typeLeading*2),0) );
+	disp.translate( new Point((grid.width*2)+(values.leading*2),0) );
 	disp.characterStyle.leading *= 3;
-	disp.characterStyle.fontSize = (values.typeLeading*3)-3;
+	disp.characterStyle.fontSize = (values.leading*3)-3;
 	// disp.trimToFit();
 
 };
@@ -341,17 +341,17 @@ function calculateGrid(layer) {
 	// Define ideal margins
 	// Re-asseess margins, based on base leading
 	//
-	if( values.marginTop % values.typeLeading != 0 ) {
-		dialog.getComponent('marginTop').value = paper.roundMultiple( values.marginTop, values.typeLeading );
+	if( values.marginTop % values.leading != 0 ) {
+		dialog.getComponent('marginTop').value = paper.roundMultiple( values.marginTop, values.leading );
 	}
-	if( values.marginBottom % values.typeLeading != 0 ) {
-		dialog.getComponent('marginBottom').value = paper.roundMultiple( values.marginBottom, values.typeLeading );
+	if( values.marginBottom % values.leading != 0 ) {
+		dialog.getComponent('marginBottom').value = paper.roundMultiple( values.marginBottom, values.leading );
 	}
-	// if( values.marginLeft % values.typeLeading != 0 ) {
-	//	dialog.getComponent('marginTop').value = paper.roundMultiple( values.marginTop, values.typeLeading );
+	// if( values.marginLeft % values.leading != 0 ) {
+	//	dialog.getComponent('marginTop').value = paper.roundMultiple( values.marginTop, values.leading );
 	// }
-	// if( values.marginRight % values.typeLeading != 0 ) {
-	//	dialog.getComponent('marginBottom').value = paper.roundMultiple( values.marginBottom, values.typeLeading );
+	// if( values.marginRight % values.leading != 0 ) {
+	//	dialog.getComponent('marginBottom').value = paper.roundMultiple( values.marginBottom, values.leading );
 	// }
 
 	var margins = {
@@ -374,7 +374,7 @@ function calculateGrid(layer) {
 	// Determine baseline grid
 	//
 	var baseline = {
-		spacing: values.typeLeading
+		spacing: values.leading
 	};
 	layer.appendTop( createBaselineGrid( activeDocument.activeArtboard, margins, baseline ) );
 
@@ -390,7 +390,7 @@ function calculateGrid(layer) {
 	//
 	var rows = createRows( activeDocument.activeArtboard, margins, {
 		number: values.rows,
-		gutter:	values.typeLeading
+		gutter:	values.leading
 	});
 	layer.appendTop( rows.group );
 
@@ -401,7 +401,7 @@ function calculateGrid(layer) {
 	//
 	var columns = createColumns( activeDocument.activeArtboard, margins, {
 		number: values.cols,
-		gutter:	values.typeLeading
+		gutter:	values.leading
 	});
 	layer.appendTop( columns.group );
 

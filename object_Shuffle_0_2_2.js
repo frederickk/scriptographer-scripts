@@ -17,8 +17,8 @@
 
 // document properties
 var sel;
-var coords = new Array();
-var temp = new Array();
+var coords = [];
+var temp = [];
 
 //values
 var values = {
@@ -108,7 +108,7 @@ function moveFlip() {
 		}
 
 	}
-	
+
 };
 
 // ------------------------------------------------------------------------

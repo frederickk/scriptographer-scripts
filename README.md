@@ -1,5 +1,10 @@
 Scriptographer-Scripts
 ------
+
+### This repository is no longer being actively updated and serves as a reference. [Scriptographer is no longer an active project](http://scriptographer.org/news/the-future-of-scriptographer-is-paper-js/) since Adobe's release of CS6.
+
+### Many of the scripts use the library frederickkScript.js this library no longer exists. With some slight modifications  [scriptographer.folio.js](https://github.com/frederickk/folio.js/blob/5a430ad4adc37e9f6d907a42d10a6ab81fb6d41e/distribution/scriptographer.folio.js) can be used instead.
+
 A collection of scripts I've written for [Scriptographer](http://www.scriptographer.org/) over the years. Not every piece of code was created by me but credit and links are given where credit is due.
 
 Some of the scripts I've documented/discussed in more detail on my [blog](http://blog.kennethfrederick.de/search/label/scriptographer).

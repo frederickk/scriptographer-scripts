@@ -25,7 +25,7 @@ var values = {
 
 // gui components
 var components = {
-	noiseScale: { 
+	noiseScale: {
 		type: 'number',
 		label: 'Noise Scale Factor'
 	}
@@ -70,11 +70,11 @@ function Draw() {
 		} else {
 			for(var j=0; j<obj.segments.length; j++) {
 				var seg = obj.segments[j];
-				
+
 				// normalize
 				var x = seg.point.x; // obj.bounds.width;
 				var y = seg.point.y; // obj.bounds.height;
-				
+
 				// noise
 				var noise = PerlinNoise.noise( values.noiseScale*Math.random(), values.noiseScale*Math.random(), 0 );
 				seg.point = new Point( seg.point.x*noise, seg.point.y*noise );
@@ -167,5 +167,5 @@ PerlinNoise = new function() {
 // Invocation
 // ------------------------------------------------------------------------
 Setup();
-Update(event);
+// Update(event);
 Draw();
