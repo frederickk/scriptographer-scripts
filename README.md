@@ -21,10 +21,6 @@ Some of the scripts I've documented/discussed in more detail on my [blog](http:/
 - [scriptographer. object/layer select](http://kenfrederick.blogspot.com/2009/06/scriptographer-objectlayer-select.html)
 
 
-Also, be sure to look at the [Scriptographer](http://www.scriptographer.org/) version of my [Folio.js](github.com/frederickk/folio.js) library.
-
-
 License
 ------
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
-
